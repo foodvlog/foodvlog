@@ -1,0 +1,100 @@
+<!doctype html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{% static 'cr/css/reset.css' %}"> <!-- CSS reset -->
+	<link rel="stylesheet" href="{% static 'cr/css/style.css' %}"> <!-- Gem style -->
+	<script src="{% static 'js/modernizr.js' %}"></script> <!-- Modernizr -->
+
+	<title>Side Cart</title>
+</head>
+<body class="foo">
+	<header>
+		<div id="logo"><img src="{% static 'cr/img/cd-logo.svg' %}" alt="Homepage"></div>
+		<div id="cd-hamburger-menu"><a class="cd-img-replace" href="#0">Menu</a></div>
+		<div id="cd-cart-trigger"><a class="cd-img-replace" href="#0"><b>&nbsp;&nbsp;&nbsp;{{itc}}</b></a></div>
+		<h1>CART</h1>
+	</header>
+
+	<nav id="main-nav">
+		<ul>
+			<li><a href="#0">Home</a></li>
+<!--			<li><a href="#0">About</a></li>-->
+<!--			<li><a class="current" href="#0">Services</a></li>-->
+<!--			<li><a href="#0">Gallery</a></li>-->
+<!--			<li><a href="#0">Contact</a></li>-->
+		</ul>
+	</nav>
+<div>
+{% for i in ci %}
+
+	<main>
+		<ul id="cd-gallery-items" class="cd-container">
+			<li>
+				<div class="image">
+				<a href="{{i.prodt.get_url}}"><img src="{{i.prodt.img.url}}" alt="" style="height:75px;width:50px;"></a><br>
+					</div>
+				<div class="description">
+					<a href="{{i.prodt.get_url}}"><span>{{i.prodt.name}}</span><br></a>
+              <span>ID:{{i.prodt.id}}</span><br>
+				<span>Price:{{i.prodt.price}}*1</span><br>
+					<div>
+						<p><span class="price" style="color:white background-color:red;font-family:'comic sans ms';"><b>Total:${{t}}</b></span></p><br>
+					</div>
+					<span><a href="{% url 'addcart' i.prodt.id %}"><p>Qty:&nbsp;&nbsp;<i class="fa fa-plus" style="font-size:10px"></i></a> &nbsp;&nbsp;{{i.quan}} &nbsp;&nbsp; <a href="{% url 'cart_decrement' i.prodt.id %}"><i class="fa fa-minus" style="font-size:10px"></i></a></span><br><br><br>
+					<div>
+						<a href="{% url 'remove' i.prodt.id %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trash" style="font-size:15px"></i></a><a href="{{i.prodt.get_url}}"></a>
+					</div>
+				</div>
+			</li>
+		</ul> <!-- cd-gallery-items -->
+	</main>
+</div>
+{% endfor %}
+</body>
+{% endblock %}
+</html>
+	<div id="cd-shadow-layer"></div>
+
+	<div id="cd-cart">
+		<h2>Cart</h2>
+	</div>
+
+<!--		<ul class="cd-cart-items">-->
+
+<!--			&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--			<li>-->
+<!--				<span class="cd-qty"></span> Product Name-->
+<!--				<div class="cd-price"></div>-->
+<!--&lt;!&ndash;				<a href="#0" class="cd-item-remove cd-img-replace">Remove</a>&ndash;&gt;-->
+<!--			</li>-->
+<!--		</ul> &lt;!&ndash; cd-cart-items &ndash;&gt;-->
+
+<!--&lt;!&ndash;		<div class="cd-cart-total">&ndash;&gt;-->
+<!--&lt;!&ndash;			<p>Total <span>$39.96</span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;		</div> &lt;!&ndash; cd-cart-total &ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;		<a href="#0" class="checkout-btn">Checkout</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;		<p class="cd-go-to-cart"><a href="#0">Go to cart page</a></p>&ndash;&gt;-->
+<!--	</div> &lt;!&ndash; cd-cart &ndash;&gt;-->
+
+
+
+<!--<div class="col-25">-->
+
+<!--	<a href=""><img src="{{i.prodt.img.url}}" alt="{{i.prodt.name}}" style="height:70;width:70;"></a>-->
+<!--	<h4>Cart<span class=""></span></h4>-->
+<!--	{% for i in ci %}-->
+<!--	<p><a href="#">{{i.prod.name}}</a><span class="price">${{i.prodt.price}}</span></p>-->
+<!--	<p>+Qty-:</p>-->
+<!--</div>-->
+<!--{% endfor %}-->
+<!---->
